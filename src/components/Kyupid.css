@@ -3,3 +3,15 @@
   /* background-color: rgb(178, 210, 222); */
   background-color: rgb(163, 206, 255);
 }
+.leaflet-interactive {
+  opacity: 0.6;
+}
+.leaflet-interactive:hover {
+  opacity: 1;
+}
+.leaflet-popup-content-wrapper,
+.leaflet-popup-tip {
+  background-color: transparent;
+  color: #fff;
+  backdrop-filter: blur(10px);
+}
