@@ -1,8 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import { Map, GeoJSON, TileLayer } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import "./Kyupid.css";
+
+const initialState = {
+  center: [12.9018822, 77.6055933],
+  zoom: 10,
+};
 const Kyupid = ({ areas }) => {
+  const [viewPort, setViewPort] = useState(initialState);
   const mapStyle = {
     fillColor: "white",
     weight: 1,
@@ -21,20 +27,27 @@ const Kyupid = ({ areas }) => {
     layer.on("mouseover", function (e) {
       layer
         .bindPopup(
-          `${name} ${pinCode} has total ${users} users. Out of which ${maleUsers} are male and ${femaleUsers} are females. It has ${proUsers} paid users`
+          `<div class="tooltip-details"><h5 class="area-name">${name}</h5> <div class="label">Pincode: <span>${pinCode} </span> </div> <div class="label"> Total users:<span> ${users}</span> </div> <div class="label">Male users: <span>${maleUsers} </span>👦 </div> <div class="label">Female uesrs: <span>${femaleUsers}</span> 👧</div><div class="label">Paid users: <span>${proUsers}</span> 💲</div></div>`
         )
         .openPopup();
     });
   };
 
   return (
-    <Map style={{ height: "90vh" }} zoom={10} center={[12.9018822, 77.6055933]}>
-      <GeoJSON style={mapStyle} data={areas} onEachFeature={onEachCountry} />
-      <TileLayer
-        attribution='&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>'
-        url="https://cartodb-basemaps-{s}.global.ssl.fastly.net/dark_all/{z}/{x}/{y}.png"
-      />
-    </Map>
+    <>
+      <Map
+        style={{ height: "90vh" }}
+        zoom={viewPort.zoom}
+        center={viewPort.center}
+      >
+        <GeoJSON style={mapStyle} data={areas} onEachFeature={onEachCountry} />
+        <TileLayer
+          attribution='&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>'
+          url="https://cartodb-basemaps-{s}.global.ssl.fastly.net/dark_all/{z}/{x}/{y}.png"
+        />
+      </Map>
+      <div className="brand">Kyupid Dating App</div>
+    </>
   );
 };
 
