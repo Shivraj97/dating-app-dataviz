@@ -18,9 +18,13 @@ const Kyupid = ({ areas }) => {
     const proUsers = country.properties.proUsers;
     const maleUsers = country.properties.maleUsers;
     const femaleUsers = country.properties.femaleUsers;
-    layer.bindPopup(
-      `${name} ${pinCode} has total ${users} users. Out of which ${maleUsers} are male and ${femaleUsers} are females. It has ${proUsers} paid users`
-    );
+    layer.on("mouseover", function (e) {
+      layer
+        .bindPopup(
+          `${name} ${pinCode} has total ${users} users. Out of which ${maleUsers} are male and ${femaleUsers} are females. It has ${proUsers} paid users`
+        )
+        .openPopup();
+    });
   };
 
   return (
