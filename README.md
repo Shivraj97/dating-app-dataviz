@@ -6,7 +6,7 @@ This project was bootstrapped with [CRA](https://github.com/facebook/create-reac
 [https://dating-app-dataviz.netlify.app/](https://dating-app-dataviz.netlify.app/)
 
 ## Project Images
-[LeafletGeoJson](https://i.ibb.co/ZhXqj2X/Screenshot-433.png)
+[LeafletGeoJson](https://i.ibb.co/g6zLQjj/Screenshot-435.png)
 
 ## Technologies/Libraries used
 [leaflet](https://leafletjs.com/) - to render map. 
